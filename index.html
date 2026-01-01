@@ -129,6 +129,13 @@ body{
   font-size:2.4rem;
 }
 
+.tap-hint{
+  margin-top:0.4rem;
+  font-size:0.7rem;
+  letter-spacing:1px;
+  opacity:0.7;
+}
+
 .emoji-message{
   margin-top:0.8rem;
   font-size:0.85rem;
@@ -191,6 +198,7 @@ for(let i=0;i<40;i++){
 
     <div class="emoji-box" onclick="toggleMessage(this)">
       <div class="emoji">💜</div>
+      <div class="tap-hint">Tap Me</div>
       <div class="emoji-message">
         Your smile has a way of making everything feel calm and beautiful.
       </div>
@@ -198,6 +206,7 @@ for(let i=0;i<40;i++){
 
     <div class="emoji-box" onclick="toggleMessage(this)">
       <div class="emoji">🥰</div>
+      <div class="tap-hint">Tap Me</div>
       <div class="emoji-message">
         You are not just special to me, you are my favorite feeling.
       </div>
@@ -205,6 +214,7 @@ for(let i=0;i<40;i++){
 
     <div class="emoji-box" onclick="toggleMessage(this)">
       <div class="emoji">🌸</div>
+      <div class="tap-hint">Tap Me</div>
       <div class="emoji-message">
         Your presence makes ordinary moments feel soft and meaningful.
       </div>
@@ -212,6 +222,7 @@ for(let i=0;i<40;i++){
 
     <div class="emoji-box" onclick="toggleMessage(this)">
       <div class="emoji">✨</div>
+      <div class="tap-hint">Tap Me</div>
       <div class="emoji-message">
         Every little thing about you quietly stays in my heart.
       </div>
@@ -251,8 +262,16 @@ function startCelebration(){
 }
 
 function toggleMessage(box){
-  const msg=box.querySelector(".emoji-message");
-  msg.style.display = msg.style.display==="block" ? "none" : "block";
+  const msg = box.querySelector(".emoji-message");
+  const hint = box.querySelector(".tap-hint");
+
+  if(msg.style.display === "block"){
+    msg.style.display = "none";
+    hint.style.display = "block";
+  }else{
+    msg.style.display = "block";
+    hint.style.display = "none";
+  }
 }
 </script>
 
