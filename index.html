@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For You</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@1&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --accent:#d0a2f7;
+  --glass:rgba(255,255,255,0.18);
+  --border:rgba(255,255,255,0.3);
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+
+/* ================= BACKGROUND ================= */
+body{
+  font-family:'Poppins',sans-serif;
+  min-height:100vh;
+  background:linear-gradient(120deg,#4b2a6b,#6a4c93,#7b5fcf,#9d79f2);
+  background-size:400% 400%;
+  animation:bgMove 20s ease infinite;
+  color:#fff;
+  overflow-x:hidden;
+}
+
+@keyframes bgMove{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+
+/* Floating hearts & sparkles */
+.float{
+  position:fixed;
+  bottom:-30px;
+  font-size:16px;
+  opacity:0.5;
+  animation:floatUp linear infinite;
+  pointer-events:none;
+}
+
+@keyframes floatUp{
+  from{transform:translateY(0);opacity:0}
+  to{transform:translateY(-120vh);opacity:1}
+}
+
+/* ================= FIRST SCREEN ================= */
+.hero{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  position:relative;
+  z-index:2;
+}
+
+.hero-card{
+  width:90%;
+  max-width:420px;
+  padding:3rem 2rem;
+  background:var(--glass);
+  backdrop-filter:blur(22px);
+  border:1px solid var(--border);
+  border-radius:30px;
+  box-shadow:0 30px 70px rgba(0,0,0,0.35);
+}
+
+.hero h1{
+  font-family:'Playfair Display',serif;
+  font-size:2.6rem;
+}
+
+.hero .name{
+  margin-top:1rem;
+  font-size:1.4rem;
+  font-family:'Playfair Display',serif;
+  color:var(--accent);
+}
+
+.start-btn{
+  margin-top:3rem;
+  padding:0.8rem 2.4rem;
+  border:none;
+  border-radius:30px;
+  background:linear-gradient(135deg,#e0c3ff,#9d79f2);
+  color:#2d1b4e;
+  font-size:1rem;
+  cursor:pointer;
+  box-shadow:0 12px 30px rgba(157,121,242,0.6);
+}
+
+/* ================= SECTIONS ================= */
+.section{
+  padding:4rem 1.5rem;
+  position:relative;
+  z-index:2;
+}
+
+/* Emojis */
+.emoji-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:1.4rem;
+  max-width:420px;
+  margin:0 auto;
+}
+
+.emoji-box{
+  background:var(--glass);
+  backdrop-filter:blur(18px);
+  border-radius:22px;
+  padding:1.6rem;
+  text-align:center;
+  cursor:pointer;
+  transition:transform 0.3s ease;
+}
+
+.emoji-box:hover{
+  transform:translateY(-6px);
+}
+
+.emoji{
+  font-size:2.4rem;
+}
+
+.emoji-message{
+  margin-top:0.8rem;
+  font-size:0.85rem;
+  line-height:1.6;
+  display:none;
+}
+
+/* Final message */
+.final-title{
+  font-family:'Playfair Display',serif;
+  font-size:2.3rem;
+  text-align:center;
+  margin-bottom:1.6rem;
+}
+
+.final-text{
+  max-width:420px;
+  margin:0 auto;
+  font-size:0.95rem;
+  line-height:1.9;
+  text-align:center;
+  opacity:0.95;
+}
+
+/* Mobile */
+@media(max-width:480px){
+  .hero h1{font-size:2.2rem}
+}
+</style>
+</head>
+
+<body>
+
+<!-- Floating romantic elements -->
+<script>
+const symbols = ["💜","💖","✨","💫","🌸"];
+for(let i=0;i<40;i++){
+  const el=document.createElement("div");
+  el.className="float";
+  el.innerHTML=symbols[Math.floor(Math.random()*symbols.length)];
+  el.style.left=Math.random()*100+"%";
+  el.style.fontSize=14+Math.random()*22+"px";
+  el.style.animationDuration=10+Math.random()*12+"s";
+  document.body.appendChild(el);
+}
+</script>
+
+<!-- FIRST PAGE -->
+<section class="hero">
+  <div class="hero-card">
+    <h1>For You</h1>
+    <div class="name">POOKIE</div>
+    <button class="start-btn" onclick="startCelebration()">Start</button>
+  </div>
+</section>
+
+<!-- CELEBRATION -->
+<section class="section" id="celebration" style="display:none;">
+  <div class="emoji-grid">
+
+    <div class="emoji-box" onclick="toggleMessage(this)">
+      <div class="emoji">💜</div>
+      <div class="emoji-message">
+        Your smile has a way of making everything feel calm and beautiful.
+      </div>
+    </div>
+
+    <div class="emoji-box" onclick="toggleMessage(this)">
+      <div class="emoji">🥰</div>
+      <div class="emoji-message">
+        You are not just special to me, you are my favorite feeling.
+      </div>
+    </div>
+
+    <div class="emoji-box" onclick="toggleMessage(this)">
+      <div class="emoji">🌸</div>
+      <div class="emoji-message">
+        Your presence makes ordinary moments feel soft and meaningful.
+      </div>
+    </div>
+
+    <div class="emoji-box" onclick="toggleMessage(this)">
+      <div class="emoji">✨</div>
+      <div class="emoji-message">
+        Every little thing about you quietly stays in my heart.
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FINAL MESSAGE -->
+<section class="section">
+  <div class="final-title">Happy New Year My Love</div>
+
+  <div class="final-text">
+    I may not always find the perfect words,  
+    but every feeling I have for you is real.  
+    The way you smile, the way you care,  
+    and the way you simply exist means more to me than you know.
+
+    <br><br>
+
+    In this new year, I wish for your happiness above everything else.  
+    May your days feel lighter, your nights feel peaceful,  
+    and whenever life feels a little heavy,  
+    I hope you can feel how deeply you are loved.
+
+    <br><br>
+
+    You are someone my heart chooses again and again,  
+    today, tomorrow, and in every year that comes.
+  </div>
+</section>
+
+<script>
+function startCelebration(){
+  document.getElementById("celebration").style.display="block";
+  window.scrollTo({top:window.innerHeight,behavior:"smooth"});
+}
+
+function toggleMessage(box){
+  const msg=box.querySelector(".emoji-message");
+  msg.style.display = msg.style.display==="block" ? "none" : "block";
+}
+</script>
+
+</body>
+</html>
